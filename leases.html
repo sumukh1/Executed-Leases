@@ -6,6 +6,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <style>
         body {
             background-color: rgb(236, 237, 237);
@@ -26,7 +28,7 @@
         }
 
         .pic {
-            width: 200px;
+            width: 20%;
             height: 100px;
             margin: 2px;
         }
@@ -56,6 +58,48 @@
             filter: brightness(90%);
 
         }
+
+        #context-menu {
+            position: fixed;
+            z-index: 10000;
+            width: 250px;
+            background: rgb(107, 109, 107);
+            box-shadow: 8px 4px 8px 2px rgba(0, 0, 0, 0.2);
+            transform: scale(0);
+            transform-origin: top left;
+            border-radius: 12px;
+            display: block;
+        }
+
+        #context-menu.active {
+            transform: scale(1);
+            transition: transform 250ms ease-in-out;
+        }
+        #context-menu.deactive {
+            transform: scale(0);
+            transition: transform 250ms ease-in-out;
+        }
+
+        #context-menu .item {
+            padding: 8px 10px;
+            font-size: 15px;
+            color: #eee;
+        }
+
+        #context-menu .item:hover {
+            background: rgb(51, 49, 49);
+            border-radius: 20px;
+        }
+
+        #context-menu .item i {
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        #context-menu hr {
+            margin: 2px 0px;
+            border-color: #555;
+        }
     </style>
 </head>
 
@@ -66,7 +110,7 @@
         <div class="main">
             <div class="row">
                 <div class="col-sm-4">
-                    <div class="box">
+                    <div class="box" id="thumbnail">
                         <div class="row" align="center">
                             <div class="pic"><img src="images/2.png" alt=""></div>
                         </div>
@@ -78,7 +122,7 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="box">
+                    <div class="box" id="thumbnail">
                         <div class="row" align="center">
                             <div class="pic"><img src="images/2.png" alt=""></div>
                         </div>
@@ -90,47 +134,7 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="box">
-                        <div class="row" align="center">
-                            <div class="pic"><img src="images/2.png" alt=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="des"><i class="fas fa-file-pdf"></i><span class="strong-text"> PDF file
-                                </span><span class="tab"></span> <span class="strong-text">Term Type-</span>
-                                Monthly<br><span class="strong-text"> Lease-</span> 2023-03-01 to 2023-03-01</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <hr>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="box">
-                        <div class="row" align="center">
-                            <div class="pic"><img src="images/2.png" alt=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="des"><i class="fas fa-file-pdf"></i><span class="strong-text"> PDF file
-                                </span><span class="tab"></span> <span class="strong-text">Term Type-</span>
-                                Monthly<br><span class="strong-text"> Lease-</span> 2023-03-01 to 2023-03-01</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="box">
-                        <div class="row" align="center">
-                            <div class="pic"><img src="images/2.png" alt=""></div>
-                        </div>
-                        <div class="row">
-                            <div class="des"><i class="fas fa-file-pdf"></i><span class="strong-text"> PDF file
-                                </span><span class="tab"></span> <span class="strong-text">Term Type-</span>
-                                Monthly<br><span class="strong-text"> Lease-</span> 2023-03-01 to 2023-03-01</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="box">
+                    <div class="box" id="thumbnail">
                         <div class="row" align="center">
                             <div class="pic"><img src="images/2.png" alt=""></div>
                         </div>
@@ -146,7 +150,7 @@
             <hr>
             <div class="row">
                 <div class="col-sm-4">
-                    <div class="box">
+                    <div class="box" id="thumbnail">
                         <div class="row" align="center">
                             <div class="pic"><img src="images/2.png" alt=""></div>
                         </div>
@@ -158,7 +162,7 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="box">
+                    <div class="box" id="thumbnail">
                         <div class="row" align="center">
                             <div class="pic"><img src="images/2.png" alt=""></div>
                         </div>
@@ -170,7 +174,47 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="box">
+                    <div class="box" id="thumbnail">
+                        <div class="row" align="center">
+                            <div class="pic"><img src="images/2.png" alt=""></div>
+                        </div>
+                        <div class="row">
+                            <div class="des"><i class="fas fa-file-pdf"></i><span class="strong-text"> PDF file
+                                </span><span class="tab"></span> <span class="strong-text">Term Type-</span>
+                                Monthly<br><span class="strong-text"> Lease-</span> 2023-03-01 to 2023-03-01</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="box" id="thumbnail">
+                        <div class="row" align="center">
+                            <div class="pic"><img src="images/2.png" alt=""></div>
+                        </div>
+                        <div class="row">
+                            <div class="des"><i class="fas fa-file-pdf"></i><span class="strong-text"> PDF file
+                                </span><span class="tab"></span> <span class="strong-text">Term Type-</span>
+                                Monthly<br><span class="strong-text"> Lease-</span> 2023-03-01 to 2023-03-01</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="box" id="thumbnail">
+                        <div class="row" align="center">
+                            <div class="pic"><img src="images/2.png" alt=""></div>
+                        </div>
+                        <div class="row">
+                            <div class="des"><i class="fas fa-file-pdf"></i><span class="strong-text"> PDF file
+                                </span><span class="tab"></span> <span class="strong-text">Term Type-</span>
+                                Monthly<br><span class="strong-text"> Lease-</span> 2023-03-01 to 2023-03-01</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="box" id="thumbnail">
                         <div class="row" align="center">
                             <div class="pic"><img src="images/2.png" alt=""></div>
                         </div>
@@ -184,6 +228,50 @@
             </div>
         </div>
     </center>
+    <div id="context-menu" class="deactive">
+        <div class="item">
+            <i class="uil uil-eye"></i>Preview
+        </div>
+        <div class="item">
+            <i class="uil uil-file-export"></i>Open-With
+        </div>
+        <hr>
+        <div class="item">
+            <i class="uil uil-copy-alt"></i>Paste
+        </div>
+        <div class="item">
+            <i class="uil uil-trash-alt"></i>Delete
+        </div>
+        <div class="item">
+            <i class="uil uil-file alt"></i>Show file Location
+        </div>
+        <div class="item">
+            <i class="uil uil-signout"></i>Exit
+        </div>
+    </div>
 </body>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $(".box").contextmenu(function (event) {
+            event.preventDefault();
+
+            $('#context-menu').css("top",event.clientY + "px");
+            $('#context-menu').css("left",event.clientX + "px");
+            $('#context-menu').removeClass('deactive').addClass('active');
+        });
+
+        window.addEventListener("contextmenu", function (event) {
+            event.preventDefault();
+        });
+
+        window.addEventListener("click", function () {
+            console.log("click");
+            $('#context-menu').removeClass('active').addClass('deactive');
+            
+        });
+
+    });
+</script>
 
 </html>

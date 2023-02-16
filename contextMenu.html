@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <style>
+        body {
+            margin: 0px;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        #context-menu {
+            position: fixed;
+            z-index: 10000;
+            width: 250px;
+            background: rgb(107, 109, 107);
+            box-shadow: 8px 4px 8px 2px rgba(0, 0, 0, 0.2);
+            transform: scale(0);
+            transform-origin: top left;
+            border-radius: 12px;
+        }
+
+        #context-menu.active {
+            transform: scale(1);
+            transition: transform 350ms ease-in-out;
+        }
+
+        #context-menu .item {
+            padding: 8px 10px;
+            font-size: 15px;
+            color: #eee;
+        }
+
+        #context-menu .item:hover {
+            background: rgb(51, 49, 49);
+            border-radius: 20px;
+        }
+
+        #context-menu .item i {
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        #context-menu hr {
+            margin: 2px 0px;
+            border-color: #555;
+        }
+    </style>
+    <title>Context Menu</title>
+</head>
+
+<body>
+    <div id="context-menu">
+        <div class="item">
+            <i class="uil uil-eye"></i>Preview
+        </div>
+        <div class="item">
+            <i class="uil uil-file-export"></i>Open-With
+        </div>
+        <hr>
+        <div class="item">
+            <i class="uil uil-copy-alt"></i>Paste
+        </div>
+        <div class="item">
+            <i class="uil uil-trash-alt"></i>Delete
+        </div>
+        <div class="item">
+            <i class="uil uil-file alt"></i>Show file Location
+        </div>
+        <div class="item">
+            <i class="uil uil-signout"></i>Exit
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.addEventListener("contextmenu", function (event) {
+            event.preventDefault();
+            var contextElement = document.getElementById("context-menu");
+            contextElement.style.top = event.offsetY + "px";
+            contextElement.style.left = event.offsetX + "px";
+            contextElement.classList.add("active");
+        });
+        window.addEventListener("click", function () {
+            document.getElementById("context-menu").classList.add("active");
+        });
+    </script>
+</body>
+
+</html>
