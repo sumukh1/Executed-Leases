@@ -230,23 +230,14 @@
     </center>
     <div id="context-menu" class="deactive">
         <div class="item">
+            <i class="uil uil-folder-download"></i>Download
+        </div>
+        <div class="item">
             <i class="uil uil-eye"></i>Preview
         </div>
+        <hr> 
         <div class="item">
-            <i class="uil uil-file-export"></i>Open-With
-        </div>
-        <hr>
-        <div class="item">
-            <i class="uil uil-copy-alt"></i>Paste
-        </div>
-        <div class="item">
-            <i class="uil uil-trash-alt"></i>Delete
-        </div>
-        <div class="item">
-            <i class="uil uil-file alt"></i>Show file Location
-        </div>
-        <div class="item">
-            <i class="uil uil-signout"></i>Exit
+            <i class="uil uil-file-export"></i>Open-In New Tab
         </div>
     </div>
 </body>
@@ -261,9 +252,9 @@
             $('#context-menu').removeClass('deactive').addClass('active');
         });
 
-        window.addEventListener("contextmenu", function (event) {
-            event.preventDefault();
-        });
+        // window.addEventListener("contextmenu", function (event) {
+        //     event.preventDefault();
+        // });
 
         window.addEventListener("click", function () {
             console.log("click");
