@@ -75,6 +75,7 @@
             transform: scale(1);
             transition: transform 250ms ease-in-out;
         }
+
         #context-menu.deactive {
             transform: scale(0);
             transition: transform 250ms ease-in-out;
@@ -230,12 +231,14 @@
     </center>
     <div id="context-menu" class="deactive">
         <div class="item">
-            <i class="uil uil-folder-download"></i>Download
-        </div>
-        <div class="item">
             <i class="uil uil-eye"></i>Preview
         </div>
-        <hr> 
+
+        <div class="item">
+            <i class="uil uil-folder-download"></i>Download
+        </div>
+        
+        <hr>
         <div class="item">
             <i class="uil uil-file-export"></i>Open-In New Tab
         </div>
@@ -247,8 +250,8 @@
         $(".box").contextmenu(function (event) {
             event.preventDefault();
 
-            $('#context-menu').css("top",event.clientY + "px");
-            $('#context-menu').css("left",event.clientX + "px");
+            $('#context-menu').css("top", event.clientY + "px");
+            $('#context-menu').css("left", event.clientX + "px");
             $('#context-menu').removeClass('deactive').addClass('active');
         });
 
@@ -259,7 +262,7 @@
         window.addEventListener("click", function () {
             console.log("click");
             $('#context-menu').removeClass('active').addClass('deactive');
-            
+
         });
 
     });
